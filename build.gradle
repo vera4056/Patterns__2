@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+plugins {
+    id "io.freefair.lombok" version "6.6-rc1"
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.22'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'io.rest-assured:rest-assured:4.3.0'
+    testImplementation 'com.google.code.gson:gson:2.8.6'
+    testImplementation 'com.github.javafaker:javafaker:1.0.1'
+    testImplementation 'com.codeborne:selenide:5.19.0'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.3'
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
+}
