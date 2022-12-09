@@ -22,11 +22,11 @@ public class AuthTest {
     @Test
     @DisplayName("Should successfully login with active registered user")
     void shouldSuccessfulLoginIfRegisteredActiveUser() {
-        var registeredUser = getRegisteredUser("active");
+        var registeredUser = getUser("active");
         $("[data-test-id='login'] input").setValue(registeredUser.getLogin());
         $("[data-test-id='password'] input").setValue(registeredUser.getPassword());
         $("button.button").click();
-        $("h2").shouldHave(Condition.exactText("Личный кабинет")).shouldBe((Condition.visible));
+        $("h2").shouldHave(Condition.exactText("Интернет Банк")).shouldBe((Condition.visible));
 
 
     }
@@ -47,7 +47,7 @@ public class AuthTest {
     @Test
     @DisplayName("Should get error message if login with blocked registered user")
     void shouldGetErrorIfBlockedUser() {
-        var blockedUser = getUser("active");
+        var blockedUser = getRegisteredUser("blocked");
         $("[data-test-id='login'] input").setValue(blockedUser.getLogin());
         $("[data-test-id='password'] input").setValue(blockedUser.getPassword());
         $("button.button").click();
