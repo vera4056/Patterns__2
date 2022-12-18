@@ -11,7 +11,6 @@ import ru.netology.testmode.DataGenerator.Registration.RegistrationDto;
 import java.util.Locale;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.requestSpecification;
 
 public class DataGenerator {
     private static final RequestSpecification requestSpec = new RequestSpecBuilder()
@@ -30,7 +29,7 @@ public class DataGenerator {
 
     private static void sendRequest(RegistrationDto user) {
         given()
-                .spec(requestSpecification)
+                .spec(requestSpec)
                 .body(user)
                 .when()
                 .post("/api/system/users")
@@ -60,7 +59,7 @@ public class DataGenerator {
         }
 
         public static RegistrationDto getRegisteredUser(String status) {
-            var registeredUser = getUser(status);
+            RegistrationDto registeredUser = getUser(status);
             sendRequest(registeredUser);
             return registeredUser;
 
@@ -77,5 +76,6 @@ public class DataGenerator {
         }
     }
 }
+
 
 
